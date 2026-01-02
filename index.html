@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LexSheet – Closing Cost Estimate Software</title>
+  <meta name="description" content="LexSheet is hosted software that provides estimated real estate closing cost calculations for Florida law firms." />
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+      color: #222;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      background: #ffffff;
+    }
+    h1, h2 {
+      color: #111;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.5rem;
+    }
+    p {
+      margin: 0.75rem 0;
+    }
+    .tagline {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    .footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e5e5e5;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    a {
+      color: #1a5fd0;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>LexSheet</h1>
+    <p class="tagline">Closing Cost Estimate Software for Florida Law Firms</p>
+
+    <h2>What LexSheet Is</h2>
+    <p>
+      LexSheet is hosted software that provides a configurable closing cost estimation calculator
+      for Florida real estate transactions. Law firms embed the calculator on their website so
+      clients can generate estimated buyer and seller closing costs based on basic transaction details.
+    </p>
+
+    <p>
+      LexSheet is software only. All calculations are estimates provided for informational purposes
+      and do not constitute legal or financial advice.
+    </p>
+
+    <h2>How It Works</h2>
+    <p>
+      Firms embed the LexSheet calculator on their website using a secure license key.
+      Users enter limited transaction details, and the calculator displays an estimated breakdown
+      of customary closing costs.
+    </p>
+    <p>
+      Calculations are performed client-side. LexSheet does not process payments and does not store
+      end-user data.
+    </p>
+
+    <h2>Pricing</h2>
+    <p>
+      LexSheet is offered on a licensed basis with a one-time setup fee and an ongoing subscription
+      for hosted access, maintenance, and support.
+    </p>
+    <p>
+      Pricing varies by license count and billing term. Please contact us for details.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Email: <a href="mailto:support@lexsheet.com">support@lexsheet.com</a>
+    </p>
+
+    <div class="footer">
+      <h2>Terms of Service</h2>
+      <p>
+        LexSheet provides estimated closing cost calculations for informational purposes only.
+        LexSheet does not provide legal or financial advice and does not guarantee the accuracy of
+        estimates. Use of the software does not create an attorney-client relationship.
+      </p>
+
+      <h2>Privacy Policy</h2>
+      <p>
+        LexSheet does not collect or store personal information entered into the calculator.
+        Calculations are performed client-side. Limited operational data may be collected solely
+        for service reliability and security.
+      </p>
+
+      <p>
+        © <span id="year"></span> LexSheet Technologies, LLC
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
