@@ -386,6 +386,11 @@
         width: 100%;
         border: 0;
         min-height: 1650px;
+      .demoGrid{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 18px;
       }
       .formGrid{
         display:grid;
@@ -541,6 +546,8 @@
         flex-wrap: wrap;
         justify-content:flex-start;
       }
+      .statusSuccess{ color: #0b7a4d; }
+      .statusError{ color: #9e2a2a; }
 
       .formStatus{
         font-size: 13px;
@@ -710,6 +717,18 @@
             <p>Calculations stay in the browser. No payment collection, logins, or end-user data storage.</p>
           </div>
           <div class="card">
+          </div>
+          <div class="card">
+            <div class="icon">CFG</div>
+            <h3>Configurable schedules</h3>
+            <p>Built around Florida customary policies and adaptable to your firm’s fee schedules, disclaimers, and branding.</p>
+          </div>
+          <div class="card">
+            <div class="icon">PRV</div>
+            <h3>Client-side privacy</h3>
+            <p>Calculations stay in the browser. No payment collection, logins, or end-user data storage.</p>
+          </div>
+          <div class="card">
             <div class="icon">SUP</div>
             <h3>Managed for you</h3>
             <p>Licenses, domains, and config changes are supported by LexSheet so your team doesn’t chase updates.</p>
@@ -733,6 +752,12 @@
               <li><span class="dotSm"></span>Client enters basic transaction details and optional lender info.</li>
               <li><span class="dotSm"></span>The calculator returns estimated totals with a printable breakdown.</li>
               <li><span class="dotSm"></span>Your contact information and disclaimers stay front and center.</li>
+          <div class="card">
+            <h3>Visitor flow</h3>
+            <ul class="list">
+              <li><span class="dotSm"></span>Client enters basic transaction details and optional lender info.</li>
+              <li><span class="dotSm"></span>The calculator returns estimated totals with a printable breakdown.</li>
+              <li><span class="dotSm"></span>Your contact information and disclaimers stay front and center.</li>
             </ul>
           </div>
           <div class="card">
@@ -742,6 +767,69 @@
               <li><span class="dotSm"></span>Domain allowlists for each installation.</li>
               <li><span class="dotSm"></span>Support for additional licenses as your footprint grows.</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEMO -->
+      <section id="demo">
+        <div class="sectionTitle">Demo</div>
+        <div class="sectionH2">Explore the calculator experience.</div>
+        <p class="sectionP">
+          This sample calculator illustrates the type of breakdown clients see on your site. Values are for demonstration only and can be adjusted to
+          match your firm’s schedules.
+        </p>
+
+        <div class="demoGrid">
+          <div class="card">
+            <h3>Admin controls</h3>
+            <ul class="list">
+              <li><span class="dotSm"></span>License-level branding, phone, and schedule updates.</li>
+              <li><span class="dotSm"></span>Domain allowlists for each installation.</li>
+              <li><span class="dotSm"></span>Support for additional licenses as your footprint grows.</li>
+            </ul>
+            <h3 style="margin-bottom:12px;">Demo inputs</h3>
+            <form id="demoForm" aria-label="Demo closing cost calculator">
+              <div class="formGrid">
+                <label>
+                  Purchase price
+                  <input type="number" id="demoPrice" name="price" min="0" step="1000" value="450000" />
+                </label>
+                <label>
+                  Loan amount
+                  <input type="number" id="demoLoan" name="loan" min="0" step="1000" value="360000" />
+                </label>
+                <label>
+                  County doc stamp rate (per $100)
+                  <input type="number" id="demoDocRate" name="docRate" min="0" step="0.01" value="0.70" />
+                </label>
+                <label>
+                  Intangible tax rate
+                  <input type="number" id="demoIntRate" name="intRate" min="0" step="0.0001" value="0.002" />
+                </label>
+                <label class="full">
+                  Settlement & title services
+                  <input type="number" id="demoSettlement" name="settlement" min="0" step="25" value="625" />
+                </label>
+              </div>
+            </form>
+            <p class="demoNote">Adjust any input to see the demonstration totals update instantly.</p>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:12px;">Illustrative totals</h3>
+            <div class="demoTotals" id="demoTotals">
+              <div class="demoRow"><span>Deed doc stamps</span><strong class="money" id="demoDeed"></strong></div>
+              <div class="demoRow"><span>Note doc stamps</span><strong class="money" id="demoNote"></strong></div>
+              <div class="demoRow"><span>Intangible tax</span><strong class="money" id="demoInt"></strong></div>
+              <div class="demoRow"><span>Recording & search fees</span><strong class="money" id="demoRecord"></strong></div>
+              <div class="demoRow"><span>Settlement & title services</span><strong class="money" id="demoSettlementTotal"></strong></div>
+              <div class="demoRow" style="border-style:solid;">
+                <strong>Estimated total</strong>
+                <strong class="money" id="demoTotal"></strong>
+              </div>
+            </div>
+            <p class="demoNote">Numbers are illustrative and do not constitute legal or financial advice.</p>
           </div>
         </div>
       </section>
@@ -914,6 +1002,37 @@
     </footer>
 
     <script>
+      // Demo calculator logic
+      const formatMoney = (value) =>
+        value.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+
+      const updateDemo = () => {
+        const price = parseFloat(document.getElementById('demoPrice').value) || 0;
+        const loan = parseFloat(document.getElementById('demoLoan').value) || 0;
+        const docRate = parseFloat(document.getElementById('demoDocRate').value) || 0;
+        const intRate = parseFloat(document.getElementById('demoIntRate').value) || 0;
+        const settlement = parseFloat(document.getElementById('demoSettlement').value) || 0;
+
+        const deedDoc = Math.max(price * (docRate / 100), 0);
+        const noteDoc = Math.max(loan * 0.0035, 0);
+        const intangible = Math.max(loan * intRate, 0);
+        const recording = Math.max(price * 0.00025 + 75, 0);
+        const total = deedDoc + noteDoc + intangible + recording + settlement;
+
+        document.getElementById('demoDeed').textContent = formatMoney(deedDoc);
+        document.getElementById('demoNote').textContent = formatMoney(noteDoc);
+        document.getElementById('demoInt').textContent = formatMoney(intangible);
+        document.getElementById('demoRecord').textContent = formatMoney(recording);
+        document.getElementById('demoSettlementTotal').textContent = formatMoney(settlement);
+        document.getElementById('demoTotal').textContent = formatMoney(total);
+      };
+
+      ['demoPrice','demoLoan','demoDocRate','demoIntRate','demoSettlement'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el){ el.addEventListener('input', updateDemo); }
+      });
+      updateDemo();
+
       // Access request form handling via formsubmit.co
       const accessForm = document.getElementById('accessForm');
       const status = document.getElementById('formStatus');
