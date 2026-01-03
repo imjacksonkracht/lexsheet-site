@@ -3,35 +3,38 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>LexSheet — Closing Cost Estimate Software for Florida Law Firms</title>
+    <title>LexSheet — Closing Cost Estimate Software</title>
     <meta
       name="description"
-      content="LexSheet is hosted software that provides a configurable closing cost estimation calculator for Florida real estate transactions. Embed it with a secure license key."
+      content="LexSheet is hosted closing cost estimate software built around Florida customary policies and configurable to your firm’s website."
     />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="LexSheet — Closing Cost Estimate Software for Florida Law Firms" />
-    <meta property="og:description" content="Embed a configurable Florida closing cost estimate calculator on your firm’s website with a secure license key." />
+    <meta property="og:title" content="LexSheet — Closing Cost Estimate Software" />
+    <meta
+      property="og:description"
+      content="Embed a configurable closing cost calculator on your site. Built around Florida customary policies and adjustable to your firm."
+    />
     <meta property="og:type" content="website" />
     <!-- Optional after you add a logo image -->
     <!-- <meta property="og:image" content="/assets/og.png" /> -->
 
     <style>
       :root{
-        --bg: #0b1220;
-        --bg2:#0d172a;
-        --card: rgba(255,255,255,.06);
-        --card2: rgba(255,255,255,.09);
-        --border: rgba(255,255,255,.10);
-        --border2: rgba(255,255,255,.16);
-        --text: #e7eefc;
-        --muted: rgba(231,238,252,.72);
+        --bg: #f6f9f7;
+        --bg2:#eef3ef;
+        --card: #ffffff;
+        --card2: #f1f6f3;
+        --border: #dbe5de;
+        --border2: #c9d5cd;
+        --text: #0f2021;
+        --muted: #4b5e59;
 
         --brand: #36c27a;
         --brand2:#2ea56a;
 
-        --shadow: 0 18px 55px rgba(0,0,0,.35);
-        --radius: 18px;
+        --shadow: 0 18px 45px rgba(15,39,32,.08);
+        --radius: 16px;
 
         --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
         --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
@@ -44,13 +47,11 @@
         font-family: var(--sans);
         color: var(--text);
         background:
-          radial-gradient(1200px 520px at 20% 0%, rgba(54,194,122,.22), transparent 60%),
-          radial-gradient(900px 500px at 100% 12%, rgba(59,130,246,.18), transparent 55%),
-          radial-gradient(900px 500px at 30% 100%, rgba(54,194,122,.12), transparent 60%),
+          radial-gradient(1200px 520px at 22% -4%, rgba(54,194,122,.12), transparent 55%),
           linear-gradient(180deg, var(--bg), var(--bg2));
       }
 
-      a{ color: inherit; text-decoration: none; }
+      a{ color: #0b513c; text-decoration: none; font-weight: 700; }
       a:hover{ text-decoration: underline; }
 
       /* Layout */
@@ -64,9 +65,9 @@
         position: sticky;
         top: 0;
         z-index: 20;
-        backdrop-filter: blur(12px);
-        background: rgba(11,18,32,.65);
-        border-bottom: 1px solid rgba(255,255,255,.08);
+        backdrop-filter: blur(10px);
+        background: rgba(255,255,255,.92);
+        border-bottom: 1px solid var(--border);
       }
       .navInner{
         display:flex;
@@ -85,8 +86,8 @@
         width: 38px;
         height: 38px;
         border-radius: 12px;
-        background: rgba(255,255,255,.06);
-        border: 1px solid rgba(255,255,255,.10);
+        background: var(--card2);
+        border: 1px solid var(--border);
         display:grid;
         place-items:center;
         overflow:hidden;
@@ -105,29 +106,32 @@
       .brandName{
         font-weight: 900;
         letter-spacing: .2px;
+        color: #0c3327;
       }
       .brandTag{
         font-size: 12px;
         color: var(--muted);
         margin-top: 4px;
+        font-weight: 700;
       }
 
       .navLinks{
         display:flex;
         align-items:center;
-        gap: 16px;
+        gap: 12px;
         flex-wrap: wrap;
         justify-content:flex-end;
       }
       .navLinks a{
         font-size: 13px;
-        color: rgba(231,238,252,.82);
-        padding: 8px 10px;
+        color: #1a3f35;
+        padding: 9px 11px;
         border-radius: 10px;
+        font-weight: 800;
       }
       .navLinks a:hover{
         text-decoration:none;
-        background: rgba(255,255,255,.06);
+        background: var(--card2);
       }
 
       .btn{
@@ -139,30 +143,30 @@
         padding: 11px 14px;
         font-weight: 800;
         font-size: 13px;
-        border: 1px solid rgba(255,255,255,.12);
+        border: 1px solid var(--border);
         cursor:pointer;
         white-space: nowrap;
       }
       .btnPrimary{
         background: linear-gradient(180deg, rgba(54,194,122,1), rgba(46,165,106,1));
-        border-color: rgba(54,194,122,.35);
-        color: #06130c;
-        box-shadow: 0 10px 24px rgba(54,194,122,.14);
+        border-color: rgba(54,194,122,.45);
+        color: #05361f;
+        box-shadow: 0 10px 24px rgba(54,194,122,.16);
       }
-      .btnPrimary:hover{ filter: brightness(1.03); text-decoration:none; }
+      .btnPrimary:hover{ filter: brightness(1.02); text-decoration:none; }
       .btnGhost{
-        background: rgba(255,255,255,.05);
-        color: var(--text);
+        background: var(--card2);
+        color: #0f2021;
       }
-      .btnGhost:hover{ background: rgba(255,255,255,.08); text-decoration:none; }
+      .btnGhost:hover{ background: #e4ede8; text-decoration:none; }
 
       /* Hero */
       .hero{
-        padding: 54px 0 18px;
+        padding: 58px 0 18px;
       }
       .heroGrid{
         display:grid;
-        grid-template-columns: 1.12fr .88fr;
+        grid-template-columns: 1.08fr .92fr;
         gap: 28px;
         align-items: start;
       }
@@ -172,31 +176,32 @@
         align-items:center;
         padding: 8px 12px;
         border-radius: 999px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.05);
-        color: rgba(231,238,252,.88);
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: #0f3f31;
         font-size: 12px;
-        font-weight: 700;
+        font-weight: 800;
       }
       .dot{
         width: 8px;
         height: 8px;
         border-radius: 999px;
         background: var(--brand);
-        box-shadow: 0 0 0 6px rgba(54,194,122,.12);
+        box-shadow: 0 0 0 6px rgba(54,194,122,.14);
       }
       h1{
-        margin: 14px 0 10px;
+        margin: 14px 0 12px;
         font-size: clamp(34px, 4.2vw, 52px);
-        line-height: 1.02;
+        line-height: 1.04;
         letter-spacing: -0.02em;
+        color: #0c3327;
       }
       .subhead{
-        color: rgba(231,238,252,.78);
+        color: var(--muted);
         font-size: 16px;
         line-height: 1.5;
         margin: 0 0 18px;
-        max-width: 58ch;
+        max-width: 64ch;
       }
       .heroCtas{
         display:flex;
@@ -204,38 +209,32 @@
         flex-wrap: wrap;
         margin-top: 14px;
       }
-      .finePrint{
-        margin-top: 14px;
-        color: rgba(231,238,252,.60);
-        font-size: 12px;
-        line-height: 1.45;
-      }
 
       /* Right hero card */
       .heroCard{
         border-radius: var(--radius);
-        border: 1px solid rgba(255,255,255,.12);
-        background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+        border: 1px solid var(--border);
+        background: var(--card);
         box-shadow: var(--shadow);
         overflow:hidden;
       }
       .heroCardHeader{
         padding: 16px 16px 12px;
-        border-bottom: 1px solid rgba(255,255,255,.10);
+        border-bottom: 1px solid var(--border);
         display:flex;
         align-items:center;
         justify-content:space-between;
         gap:12px;
       }
-      .heroCardHeader strong{ font-size: 13px; letter-spacing: .2px; }
+      .heroCardHeader strong{ font-size: 13px; letter-spacing: .2px; color: #0f3f31; }
       .pill{
         font-size: 12px;
-        color: rgba(231,238,252,.86);
-        border: 1px solid rgba(255,255,255,.14);
-        background: rgba(255,255,255,.06);
+        color: #0f3f31;
+        border: 1px solid var(--border);
+        background: var(--card2);
         padding: 7px 10px;
         border-radius: 999px;
-        font-weight: 700;
+        font-weight: 800;
         white-space: nowrap;
       }
       .heroCardBody{
@@ -250,8 +249,8 @@
         gap: 10px;
         align-items:flex-start;
         padding: 12px;
-        border: 1px solid rgba(255,255,255,.10);
-        background: rgba(255,255,255,.04);
+        border: 1px solid var(--border);
+        background: var(--card2);
         border-radius: 14px;
       }
       .stepNum{
@@ -261,31 +260,32 @@
         display:grid;
         place-items:center;
         font-weight: 900;
-        color: #06130c;
-        background: rgba(54,194,122,.95);
+        color: #05361f;
+        background: rgba(54,194,122,.90);
         flex: 0 0 auto;
       }
       .stepTitle{
         font-weight: 900;
         font-size: 13px;
         margin: 0 0 3px;
+        color: #0c3327;
       }
       .stepDesc{
         margin:0;
         font-size: 12.5px;
-        color: rgba(231,238,252,.74);
-        line-height: 1.4;
+        color: var(--muted);
+        line-height: 1.45;
       }
 
       /* Section shells */
       section{
-        padding: 38px 0;
+        padding: 40px 0;
       }
       .sectionTitle{
         font-size: 12px;
         letter-spacing: .16em;
         text-transform: uppercase;
-        color: rgba(231,238,252,.65);
+        color: #4f6c63;
         margin: 0 0 10px;
         font-weight: 900;
       }
@@ -293,11 +293,12 @@
         margin: 0 0 10px;
         font-size: 28px;
         letter-spacing: -0.01em;
+        color: #0c3327;
       }
       .sectionP{
         margin: 0;
         max-width: 74ch;
-        color: rgba(231,238,252,.74);
+        color: var(--muted);
         line-height: 1.55;
       }
 
@@ -305,24 +306,26 @@
       .features{
         margin-top: 18px;
         display:grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 14px;
       }
       .card{
         border-radius: var(--radius);
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.05);
+        border: 1px solid var(--border);
+        background: var(--card);
         padding: 16px;
+        box-shadow: 0 10px 28px rgba(11,45,33,.05);
       }
       .card h3{
         margin: 0 0 8px;
         font-size: 14px;
         font-weight: 950;
         letter-spacing: .2px;
+        color: #0c3327;
       }
       .card p{
         margin: 0;
-        color: rgba(231,238,252,.74);
+        color: var(--muted);
         line-height: 1.5;
         font-size: 13px;
       }
@@ -330,15 +333,102 @@
         width: 36px;
         height: 36px;
         border-radius: 14px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.06);
+        border: 1px solid var(--border);
+        background: var(--card2);
         display:grid;
         place-items:center;
         margin-bottom: 10px;
-        color: rgba(231,238,252,.90);
+        color: #0c3327;
         font-family: var(--mono);
         font-weight: 900;
         font-size: 13px;
+      }
+
+      /* How grid */
+      .howGrid{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 16px;
+      }
+      .list{
+        display:grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .list li{
+        display:flex;
+        gap: 10px;
+        align-items:flex-start;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .dotSm{
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--brand);
+        box-shadow: 0 0 0 4px rgba(54,194,122,.18);
+        flex: 0 0 auto;
+      }
+
+      /* Demo */
+      .demoGrid{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 18px;
+      }
+      .formGrid{
+        display:grid;
+        gap: 12px;
+        grid-template-columns: 1fr 1fr;
+      }
+      .formGrid .full{ grid-column: 1 / -1; }
+      label{
+        display:grid;
+        gap: 6px;
+        color: #1f4136;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      input, select, textarea{
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        padding: 11px 12px;
+        font-size: 14px;
+        font-family: var(--sans);
+        color: #102621;
+        background: var(--card2);
+      }
+      textarea{ resize: vertical; min-height: 90px; }
+
+      .demoTotals{
+        display:grid;
+        gap: 12px;
+        margin-top: 8px;
+      }
+      .demoRow{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+        padding: 12px 14px;
+      }
+      .demoRow strong{ color: #0c3327; font-size: 14px; }
+      .money{
+        font-variant-numeric: tabular-nums;
+        font-family: var(--mono);
+        color: #0c3327;
+        white-space: nowrap;
+      }
+      .demoNote{
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 12.5px;
       }
 
       /* Pricing */
@@ -351,15 +441,16 @@
       }
       .priceCard{
         border-radius: var(--radius);
-        border: 1px solid rgba(255,255,255,.12);
-        background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, #ffffff, #f3f8f4);
         padding: 18px;
         position: relative;
         overflow:hidden;
+        box-shadow: 0 16px 38px rgba(11,45,33,.08);
       }
       .priceCard.featured{
-        border-color: rgba(54,194,122,.35);
-        box-shadow: 0 22px 70px rgba(0,0,0,.35);
+        border-color: rgba(54,194,122,.45);
+        box-shadow: 0 20px 48px rgba(30,120,72,.18);
       }
       .badge{
         position:absolute;
@@ -369,9 +460,9 @@
         padding: 7px 10px;
         font-size: 12px;
         font-weight: 900;
-        background: rgba(54,194,122,.18);
+        background: rgba(54,194,122,.16);
         border: 1px solid rgba(54,194,122,.35);
-        color: rgba(231,238,252,.95);
+        color: #0c3327;
       }
       .priceTop{
         display:flex;
@@ -383,10 +474,11 @@
         font-weight: 950;
         font-size: 14px;
         letter-spacing: .2px;
+        color: #0c3327;
       }
       .planDesc{
         margin:0;
-        color: rgba(231,238,252,.72);
+        color: var(--muted);
         font-size: 13px;
         line-height: 1.45;
       }
@@ -395,10 +487,11 @@
         font-size: 34px;
         font-weight: 950;
         letter-spacing: -0.02em;
+        color: #0c3327;
       }
       .planPrice span{
         font-size: 13px;
-        color: rgba(231,238,252,.70);
+        color: var(--muted);
         font-weight: 800;
         margin-left: 6px;
       }
@@ -414,7 +507,7 @@
         display:flex;
         align-items:flex-start;
         gap: 10px;
-        color: rgba(231,238,252,.78);
+        color: var(--muted);
         font-size: 13px;
         line-height: 1.35;
       }
@@ -424,67 +517,28 @@
         border-radius: 8px;
         display:grid;
         place-items:center;
-        background: rgba(54,194,122,.16);
+        background: rgba(54,194,122,.14);
         border: 1px solid rgba(54,194,122,.26);
-        color: rgba(231,238,252,.92);
+        color: #0c3327;
         font-weight: 950;
         flex: 0 0 auto;
       }
 
       .pricingNote{
         margin-top: 14px;
-        color: rgba(231,238,252,.65);
-        font-size: 12px;
+        color: var(--muted);
+        font-size: 12.5px;
         line-height: 1.5;
-      }
-
-      /* Pricing table (exact schedule) */
-      .tableWrap{
-        margin-top: 16px;
-        border-radius: var(--radius);
-        border: 1px solid rgba(255,255,255,.12);
-        overflow:hidden;
-        background: rgba(255,255,255,.04);
-      }
-      table{
-        width:100%;
-        border-collapse: collapse;
-      }
-      th, td{
-        padding: 12px 14px;
-        border-bottom: 1px solid rgba(255,255,255,.08);
-        text-align:left;
-        font-size: 13px;
-      }
-      th{
-        background: rgba(255,255,255,.05);
-        color: rgba(231,238,252,.88);
-        font-weight: 950;
-        letter-spacing: .2px;
-        white-space: nowrap;
-      }
-      td{
-        color: rgba(231,238,252,.78);
-      }
-      tr:last-child td{ border-bottom:none; }
-      .money{
-        font-variant-numeric: tabular-nums;
-        font-family: var(--mono);
-        color: rgba(231,238,252,.92);
-        white-space: nowrap;
       }
 
       /* Contact CTA */
       .cta{
         border-radius: calc(var(--radius) + 4px);
-        border: 1px solid rgba(255,255,255,.12);
-        background:
-          radial-gradient(900px 380px at 20% 0%, rgba(54,194,122,.22), transparent 58%),
-          rgba(255,255,255,.05);
+        border: 1px solid var(--border);
+        background: var(--card);
         padding: 18px;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
+        display:grid;
+        grid-template-columns: 1.1fr .9fr;
         gap: 14px;
         box-shadow: var(--shadow);
       }
@@ -493,10 +547,11 @@
         font-size: 16px;
         font-weight: 950;
         letter-spacing: .2px;
+        color: #0c3327;
       }
       .cta p{
         margin:0;
-        color: rgba(231,238,252,.74);
+        color: var(--muted);
         font-size: 13px;
         line-height: 1.45;
       }
@@ -504,20 +559,28 @@
         display:flex;
         gap: 10px;
         flex-wrap: wrap;
-        justify-content:flex-end;
+        justify-content:flex-start;
       }
+
+      .formStatus{
+        font-size: 13px;
+        margin-top: 8px;
+        font-weight: 800;
+      }
+      .statusSuccess{ color: #0b7a4d; }
+      .statusError{ color: #9e2a2a; }
 
       /* Footer */
       footer{
-        padding: 24px 0 34px;
-        color: rgba(231,238,252,.62);
-        font-size: 12px;
-        border-top: 1px solid rgba(255,255,255,.08);
-        background: rgba(0,0,0,.10);
+        padding: 26px 0 34px;
+        color: var(--muted);
+        font-size: 12.5px;
+        border-top: 1px solid var(--border);
+        background: #ffffff;
       }
       .footerGrid{
         display:grid;
-        grid-template-columns: 1.3fr .7fr;
+        grid-template-columns: 1.2fr .8fr;
         gap: 18px;
         align-items:start;
       }
@@ -530,18 +593,29 @@
       .legalCard{
         margin-top: 12px;
         border-radius: var(--radius);
-        border: 1px solid rgba(255,255,255,.10);
-        background: rgba(255,255,255,.04);
+        border: 1px dashed var(--border2);
+        background: var(--card2);
         padding: 14px;
-        color: rgba(231,238,252,.68);
+        color: var(--muted);
         line-height: 1.55;
+        text-align:center;
       }
 
       /* Responsive */
-      @media (max-width: 980px){
-        .heroGrid{ grid-template-columns: 1fr; }
-        .features{ grid-template-columns: 1fr; }
+      @media (max-width: 1080px){
+        .features{ grid-template-columns: repeat(2, 1fr); }
+        .demoGrid{ grid-template-columns: 1fr; }
         .pricingGrid{ grid-template-columns: 1fr; }
+        .cta{ grid-template-columns: 1fr; }
+        .howGrid{ grid-template-columns: 1fr; }
+      }
+      @media (max-width: 860px){
+        .heroGrid{ grid-template-columns: 1fr; }
+      }
+      @media (max-width: 640px){
+        .navInner{ flex-direction:column; align-items:flex-start; }
+        .features{ grid-template-columns: 1fr; }
+        .formGrid{ grid-template-columns: 1fr; }
         .footerGrid{ grid-template-columns: 1fr; }
         .footerLinks{ justify-content:flex-start; }
       }
@@ -559,16 +633,17 @@
             </div>
             <div class="brandText">
               <div class="brandName">LexSheet</div>
-              <div class="brandTag">Closing Cost Estimate Software for Florida Law Firms</div>
+              <div class="brandTag">Closing Cost Estimate Software</div>
             </div>
           </div>
 
           <div class="navLinks">
-            <a href="#what">What It Is</a>
-            <a href="#how">How It Works</a>
+            <a href="#overview">Overview</a>
+            <a href="#how">How it works</a>
+            <a href="#demo">Demo</a>
             <a href="#pricing">Pricing</a>
             <a href="#contact">Contact</a>
-            <a class="btn btnPrimary" href="mailto:support@lexsheet.com?subject=LexSheet%20Inquiry">Request Access</a>
+            <a class="btn btnPrimary" href="#contact">Request Access</a>
           </div>
         </div>
       </div>
@@ -579,28 +654,23 @@
       <div class="hero">
         <div class="heroGrid">
           <div>
-            <div class="kicker"><span class="dot"></span> Hosted. Configurable. Embed-ready.</div>
+            <div class="kicker"><span class="dot"></span> Embedded. Configurable. Client-ready.</div>
             <h1>Closing cost estimates your firm can publish with confidence.</h1>
             <p class="subhead">
-              LexSheet is hosted software that provides a configurable closing cost estimation calculator for Florida real estate transactions.
-              Firms embed the calculator on their website so clients can generate estimated buyer and seller closing costs based on basic transaction details.
+              LexSheet is hosted software that provides a configurable closing cost estimator you can embed on your site. It was developed around
+              Florida customary policies and can be tuned to your firm’s preferred schedules, branding, and domains.
             </p>
 
             <div class="heroCtas">
-              <a class="btn btnPrimary" href="#pricing">View Pricing</a>
-              <a class="btn btnGhost" href="mailto:support@lexsheet.com?subject=LexSheet%20Demo%20Request">Request a Demo</a>
-            </div>
-
-            <div class="finePrint">
-              LexSheet is software only. All calculations are estimates provided for informational purposes and do not constitute legal or financial advice.
-              Use of the software does not create an attorney-client relationship.
+              <a class="btn btnPrimary" href="#demo">Try the demo</a>
+              <a class="btn btnGhost" href="#pricing">View pricing</a>
             </div>
           </div>
 
           <div class="heroCard">
             <div class="heroCardHeader">
-              <strong>How firms deploy LexSheet</strong>
-              <span class="pill">Secure license key</span>
+              <strong>Deployment outline</strong>
+              <span class="pill">3 steps</span>
             </div>
             <div class="heroCardBody">
               <div class="miniSteps">
@@ -608,84 +678,147 @@
                   <div class="stepNum">1</div>
                   <div>
                     <div class="stepTitle">Provision licenses</div>
-                    <p class="stepDesc">Each firm receives a unique license key with configurable settings and allowed domains.</p>
+                    <p class="stepDesc">Each firm receives a license key, domain allowlist, and baseline configuration.</p>
                   </div>
                 </div>
                 <div class="step">
                   <div class="stepNum">2</div>
                   <div>
-                    <div class="stepTitle">Embed on your website</div>
-                    <p class="stepDesc">Drop in a simple iframe. No app installs, no plugins, and no client login required.</p>
+                    <div class="stepTitle">Embed on your site</div>
+                    <p class="stepDesc">Drop in a lightweight iframe. No plugins or client logins required.</p>
                   </div>
                 </div>
                 <div class="step">
                   <div class="stepNum">3</div>
                   <div>
-                    <div class="stepTitle">Client-side estimates</div>
-                    <p class="stepDesc">Users enter limited transaction details; the calculator renders an estimated breakdown.</p>
+                    <div class="stepTitle">Keep it updated</div>
+                    <p class="stepDesc">LexSheet handles hosting, maintenance, and license changes so the calculator stays current.</p>
                   </div>
                 </div>
               </div>
               <p class="pricingNote" style="margin-top:14px;">
-                Calculations are performed client-side. LexSheet does not process payments and does not store end-user data.
+                Estimates are computed client-side. LexSheet does not process payments or store end-user inputs.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- WHAT -->
-      <section id="what">
-        <div class="sectionTitle">What LexSheet Is</div>
-        <div class="sectionH2">A hosted, configurable closing cost calculator for Florida firms.</div>
+      <!-- OVERVIEW -->
+      <section id="overview">
+        <div class="sectionTitle">Overview</div>
+        <div class="sectionH2">Purpose-built calculator you can embed anywhere.</div>
         <p class="sectionP">
-          LexSheet is hosted software that provides a configurable closing cost estimation calculator for Florida real estate transactions.
-          Law firms embed the calculator on their website so clients can generate estimated buyer and seller closing costs based on basic transaction details.
+          LexSheet delivers a closing cost experience that feels native to your site while keeping your schedules under your control. The calculator
+          runs client-side, respects your domain restrictions, and stays in sync as your team requests updates.
         </p>
 
         <div class="features">
           <div class="card">
             <div class="icon">IF</div>
             <h3>Embed anywhere</h3>
-            <p>Works in an iframe on GoDaddy, WordPress, Squarespace, and custom sites—without giving third parties access to your code.</p>
+            <p>Works in an iframe on GoDaddy, WordPress, Squarespace, and custom sites without exposing your codebase.</p>
           </div>
           <div class="card">
-            <div class="icon">LK</div>
-            <h3>License-key controlled</h3>
-            <p>Firms use a secure license key. Configurations are applied per license, and domains can be restricted per firm.</p>
+            <div class="icon">CFG</div>
+            <h3>Configurable schedules</h3>
+            <p>Built around Florida customary policies and adaptable to your firm’s fee schedules, disclaimers, and branding.</p>
           </div>
           <div class="card">
-            <div class="icon">CS</div>
-            <h3>Client-side calculations</h3>
-            <p>Estimates are computed in the user’s browser. LexSheet does not store end-user transaction inputs.</p>
+            <div class="icon">PRV</div>
+            <h3>Client-side privacy</h3>
+            <p>Calculations stay in the browser. No payment collection, logins, or end-user data storage.</p>
+          </div>
+          <div class="card">
+            <div class="icon">SUP</div>
+            <h3>Managed for you</h3>
+            <p>Licenses, domains, and config changes are supported by LexSheet so your team doesn’t chase updates.</p>
           </div>
         </div>
       </section>
 
       <!-- HOW -->
       <section id="how">
-        <div class="sectionTitle">How It Works</div>
-        <div class="sectionH2">Simple for clients, clean for firms.</div>
+        <div class="sectionTitle">How LexSheet works</div>
+        <div class="sectionH2">Simple for visitors and straightforward for admins.</div>
         <p class="sectionP">
-          Firms embed the LexSheet calculator on their website using a secure license key. Users enter limited transaction details,
-          and the calculator displays an estimated breakdown of customary closing costs.
+          Visitors answer a few prompts to see estimated closing costs. Administrators control licenses, domains, and firm-specific settings so the
+          experience remains accurate over time.
         </p>
 
-        <div class="features" style="margin-top:16px;">
+        <div class="howGrid">
           <div class="card">
-            <div class="icon">CN</div>
-            <h3>Configurable per firm</h3>
-            <p>Firm name, phone, disclaimers, and fee schedules can be customized per license—without editing calculator logic.</p>
+            <h3>Visitor flow</h3>
+            <ul class="list">
+              <li><span class="dotSm"></span>Client enters basic transaction details and optional lender info.</li>
+              <li><span class="dotSm"></span>The calculator returns estimated totals with a printable breakdown.</li>
+              <li><span class="dotSm"></span>Your contact information and disclaimers stay front and center.</li>
+            </ul>
           </div>
           <div class="card">
-            <div class="icon">OP</div>
-            <h3>Operational visibility</h3>
-            <p>Licenses can be issued, activated, revoked, and updated from an admin portal. Embed code is generated per license.</p>
+            <h3>Admin controls</h3>
+            <ul class="list">
+              <li><span class="dotSm"></span>License-level branding, phone, and schedule updates.</li>
+              <li><span class="dotSm"></span>Domain allowlists for each installation.</li>
+              <li><span class="dotSm"></span>Support for additional licenses as your footprint grows.</li>
+            </ul>
           </div>
+        </div>
+      </section>
+
+      <!-- DEMO -->
+      <section id="demo">
+        <div class="sectionTitle">Demo</div>
+        <div class="sectionH2">Explore the calculator experience.</div>
+        <p class="sectionP">
+          This sample calculator illustrates the type of breakdown clients see on your site. Values are for demonstration only and can be adjusted to
+          match your firm’s schedules.
+        </p>
+
+        <div class="demoGrid">
           <div class="card">
-            <div class="icon">SX</div>
-            <h3>Software-only</h3>
-            <p>LexSheet is not a substitute for firm-specific quotes. It provides estimates for informational purposes only.</p>
+            <h3 style="margin-bottom:12px;">Demo inputs</h3>
+            <form id="demoForm" aria-label="Demo closing cost calculator">
+              <div class="formGrid">
+                <label>
+                  Purchase price
+                  <input type="number" id="demoPrice" name="price" min="0" step="1000" value="450000" />
+                </label>
+                <label>
+                  Loan amount
+                  <input type="number" id="demoLoan" name="loan" min="0" step="1000" value="360000" />
+                </label>
+                <label>
+                  County doc stamp rate (per $100)
+                  <input type="number" id="demoDocRate" name="docRate" min="0" step="0.01" value="0.70" />
+                </label>
+                <label>
+                  Intangible tax rate
+                  <input type="number" id="demoIntRate" name="intRate" min="0" step="0.0001" value="0.002" />
+                </label>
+                <label class="full">
+                  Settlement & title services
+                  <input type="number" id="demoSettlement" name="settlement" min="0" step="25" value="625" />
+                </label>
+              </div>
+            </form>
+            <p class="demoNote">Adjust any input to see the demonstration totals update instantly.</p>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:12px;">Illustrative totals</h3>
+            <div class="demoTotals" id="demoTotals">
+              <div class="demoRow"><span>Deed doc stamps</span><strong class="money" id="demoDeed"></strong></div>
+              <div class="demoRow"><span>Note doc stamps</span><strong class="money" id="demoNote"></strong></div>
+              <div class="demoRow"><span>Intangible tax</span><strong class="money" id="demoInt"></strong></div>
+              <div class="demoRow"><span>Recording & search fees</span><strong class="money" id="demoRecord"></strong></div>
+              <div class="demoRow"><span>Settlement & title services</span><strong class="money" id="demoSettlementTotal"></strong></div>
+              <div class="demoRow" style="border-style:solid;">
+                <strong>Estimated total</strong>
+                <strong class="money" id="demoTotal"></strong>
+              </div>
+            </div>
+            <p class="demoNote">Numbers are illustrative and do not constitute legal or financial advice.</p>
           </div>
         </div>
       </section>
@@ -693,10 +826,10 @@
       <!-- PRICING -->
       <section id="pricing">
         <div class="sectionTitle">Pricing</div>
-        <div class="sectionH2">Clear license-based pricing.</div>
+        <div class="sectionH2">Clear setup plus license options.</div>
         <p class="sectionP">
-          LexSheet is offered on a licensed basis with a one-time setup fee and an ongoing subscription for hosted access, maintenance, and support.
-          Pricing varies by license count and billing term.
+          Every installation includes a one-time setup to provision your license, domains, and default configuration. Choose the ongoing subscription
+          that fits your firm’s cadence and add licenses as you expand.
         </p>
 
         <!-- Primary pricing cards -->
@@ -704,16 +837,16 @@
           <div class="priceCard">
             <div class="priceTop">
               <div class="planName">Setup</div>
-              <p class="planDesc">One-time onboarding and provisioning.</p>
+              <p class="planDesc">Required one-time onboarding for each installation.</p>
               <div class="planPrice">$199 <span>one-time</span></div>
             </div>
             <ul class="priceList">
-              <li><span class="check">✓</span>Initial license provisioned</li>
-              <li><span class="check">✓</span>Domain restriction configured</li>
-              <li><span class="check">✓</span>Embed code provided</li>
-              <li><span class="check">✓</span>Default configuration loaded</li>
+              <li><span class="check">✓</span>License provisioned with domain allowlist</li>
+              <li><span class="check">✓</span>Embed code delivered for your site</li>
+              <li><span class="check">✓</span>Baseline configuration loaded</li>
+              <li><span class="check">✓</span>Optional add-on licenses scoped</li>
             </ul>
-            <p class="pricingNote">Additional licenses can be provisioned at setup.</p>
+            <p class="pricingNote">Setup applies to all installations.</p>
           </div>
 
           <div class="priceCard featured">
@@ -725,11 +858,11 @@
             </div>
             <ul class="priceList">
               <li><span class="check">✓</span>One active license included</li>
-              <li><span class="check">✓</span>Config changes per firm</li>
+              <li><span class="check">✓</span>Configuration updates per firm</li>
               <li><span class="check">✓</span>License management support</li>
               <li><span class="check">✓</span>Security and reliability updates</li>
             </ul>
-            <p class="pricingNote">Additional monthly licenses: $75 each.</p>
+            <p class="pricingNote">Additional monthly licenses: $75 each (setup required for new installations).</p>
           </div>
 
           <div class="priceCard">
@@ -744,43 +877,12 @@
               <li><span class="check">✓</span>Predictable annual billing</li>
               <li><span class="check">✓</span>Hosted access and maintenance</li>
             </ul>
-            <p class="pricingNote">Additional annual licenses: $750 each.</p>
+            <p class="pricingNote">Additional annual licenses: $750 each (setup required for new installations).</p>
           </div>
         </div>
 
-        <!-- Exact schedule table -->
-        <div class="tableWrap" aria-label="LexSheet pricing schedule">
-          <table>
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>One license</th>
-                <th>Additional licenses</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Set-up (one time)</td>
-                <td class="money">$199</td>
-                <td class="money">$149 ea</td>
-              </tr>
-              <tr>
-                <td>Monthly</td>
-                <td class="money">$99</td>
-                <td class="money">$75 ea</td>
-              </tr>
-              <tr>
-                <td>Annually</td>
-                <td class="money">$990</td>
-                <td class="money">$750 ea</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
         <p class="pricingNote">
-          Note: LexSheet provides estimated closing cost calculations for informational purposes only and does not guarantee the accuracy of estimates.
-          Settlement fees vary by transaction and provider. Use of the software does not create an attorney-client relationship.
+          Pricing covers hosted access only; LexSheet remains software-only and does not replace transaction-specific quotes or advice.
         </p>
       </section>
 
@@ -788,12 +890,60 @@
       <section id="contact">
         <div class="cta">
           <div>
-            <h3>Request licensing or a firm demo</h3>
-            <p>Email support and include your firm name, website domain(s), and desired license count.</p>
+            <h3>Request access or a firm demo</h3>
+            <p>Send your firm name, website domain(s), and desired license count. Submissions are delivered to info@lexsheet.app.</p>
+            <div class="ctaActions" style="margin-top:10px;">
+              <a class="btn btnGhost" href="#demo">Explore demo</a>
+              <a class="btn btnPrimary" href="mailto:info@lexsheet.app?subject=LexSheet%20Inquiry">Email info@lexsheet.app</a>
+            </div>
           </div>
-          <div class="ctaActions">
-            <a class="btn btnPrimary" href="mailto:support@lexsheet.com?subject=LexSheet%20Licensing%20Request">Email Support</a>
-            <a class="btn btnGhost" href="#pricing">Review Pricing</a>
+          <div>
+            <form id="accessForm" aria-label="Request access">
+              <div class="formGrid">
+                <label>
+                  Name
+                  <input type="text" name="name" required />
+                </label>
+                <label>
+                  Email
+                  <input type="email" name="email" required />
+                </label>
+                <label>
+                  Firm name
+                  <input type="text" name="firm" />
+                </label>
+                <label>
+                  Website domain(s)
+                  <input type="text" name="domains" />
+                </label>
+                <label>
+                  License count
+                  <select name="licenses">
+                    <option>1 license</option>
+                    <option>2-4 licenses</option>
+                    <option>5-9 licenses</option>
+                    <option>10+ licenses</option>
+                  </select>
+                </label>
+                <label>
+                  Timeline
+                  <select name="timeline">
+                    <option>Ready to launch</option>
+                    <option>Within 30 days</option>
+                    <option>Researching options</option>
+                  </select>
+                </label>
+                <label class="full">
+                  Notes
+                  <textarea name="notes" placeholder="What would you like to configure?" rows="3"></textarea>
+                </label>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; margin-top:12px; flex-wrap:wrap;">
+                <button class="btn btnPrimary" type="submit">Submit request</button>
+                <span class="pricingNote" style="margin:0;">We reply from info@lexsheet.app.</span>
+              </div>
+              <div id="formStatus" class="formStatus" role="status" aria-live="polite"></div>
+            </form>
           </div>
         </div>
       </section>
@@ -803,28 +953,89 @@
       <div class="container">
         <div class="footerGrid">
           <div>
-            <div style="font-weight:900; letter-spacing:.2px;">LexSheet</div>
-            <div style="margin-top:6px;">Email: <a href="mailto:support@lexsheet.com">support@lexsheet.com</a></div>
-
-            <div class="legalCard">
-              <div style="font-weight:900; margin-bottom:6px;">Terms of Service</div>
-              LexSheet provides estimated closing cost calculations for informational purposes only. LexSheet does not provide legal or financial advice and does not guarantee the accuracy of estimates. Use of the software does not create an attorney-client relationship.
-              <div style="height:10px;"></div>
-              <div style="font-weight:900; margin-bottom:6px;">Privacy Policy</div>
-              LexSheet does not collect or store personal information entered into the calculator. Calculations are performed client-side. Limited operational data may be collected solely for service reliability and security.
-            </div>
-
+            <div style="font-weight:900; letter-spacing:.2px; color:#0c3327;">LexSheet</div>
+            <div style="margin-top:6px;">Email: <a href="mailto:info@lexsheet.app">info@lexsheet.app</a></div>
             <div style="margin-top:12px;">© 2026 LexSheet Technologies, LLC</div>
           </div>
 
           <div class="footerLinks">
-            <a href="#what">What It Is</a>
-            <a href="#how">How It Works</a>
+            <a href="#overview">Overview</a>
+            <a href="#how">How it works</a>
             <a href="#pricing">Pricing</a>
             <a href="#contact">Contact</a>
+            <a href="#demo">Demo</a>
           </div>
+        </div>
+        <div class="legalCard">
+          <a href="terms.html">Terms of Service</a> &nbsp;•&nbsp; <a href="privacy.html">Privacy Policy</a>
         </div>
       </div>
     </footer>
+
+    <script>
+      // Demo calculator logic
+      const formatMoney = (value) =>
+        value.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+
+      const updateDemo = () => {
+        const price = parseFloat(document.getElementById('demoPrice').value) || 0;
+        const loan = parseFloat(document.getElementById('demoLoan').value) || 0;
+        const docRate = parseFloat(document.getElementById('demoDocRate').value) || 0;
+        const intRate = parseFloat(document.getElementById('demoIntRate').value) || 0;
+        const settlement = parseFloat(document.getElementById('demoSettlement').value) || 0;
+
+        const deedDoc = Math.max(price * (docRate / 100), 0);
+        const noteDoc = Math.max(loan * 0.0035, 0);
+        const intangible = Math.max(loan * intRate, 0);
+        const recording = Math.max(price * 0.00025 + 75, 0);
+        const total = deedDoc + noteDoc + intangible + recording + settlement;
+
+        document.getElementById('demoDeed').textContent = formatMoney(deedDoc);
+        document.getElementById('demoNote').textContent = formatMoney(noteDoc);
+        document.getElementById('demoInt').textContent = formatMoney(intangible);
+        document.getElementById('demoRecord').textContent = formatMoney(recording);
+        document.getElementById('demoSettlementTotal').textContent = formatMoney(settlement);
+        document.getElementById('demoTotal').textContent = formatMoney(total);
+      };
+
+      ['demoPrice','demoLoan','demoDocRate','demoIntRate','demoSettlement'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el){ el.addEventListener('input', updateDemo); }
+      });
+      updateDemo();
+
+      // Access request form handling via formsubmit.co
+      const accessForm = document.getElementById('accessForm');
+      const status = document.getElementById('formStatus');
+      accessForm?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        status.textContent = 'Sending...';
+        status.className = 'formStatus';
+
+        const formData = new FormData(accessForm);
+        formData.append('_subject', 'LexSheet access request');
+        formData.append('_captcha', 'false');
+
+        try{
+          const response = await fetch('https://formsubmit.co/ajax/info@lexsheet.app', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if(response.ok){
+            status.textContent = 'Thanks—your request was sent to info@lexsheet.app. We will reply soon.';
+            status.classList.add('statusSuccess');
+            accessForm.reset();
+          } else {
+            status.textContent = 'Unable to send right now. Please email info@lexsheet.app directly.';
+            status.classList.add('statusError');
+          }
+        } catch(err){
+          status.textContent = 'Something went wrong. Please email info@lexsheet.app directly.';
+          status.classList.add('statusError');
+        }
+      });
+    </script>
   </body>
 </html>
