@@ -375,6 +375,17 @@
       }
 
       /* Demo */
+      .demoFrame{
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 16px 38px rgba(11,45,33,.08);
+      }
+      .demoFrame iframe{
+        width: 100%;
+        border: 0;
+        min-height: 1650px;
       .demoGrid{
         display:grid;
         grid-template-columns: 1fr 1fr;
@@ -404,32 +415,6 @@
         background: var(--card2);
       }
       textarea{ resize: vertical; min-height: 90px; }
-
-      .demoTotals{
-        display:grid;
-        gap: 12px;
-        margin-top: 8px;
-      }
-      .demoRow{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        border: 1px dashed var(--border);
-        border-radius: 12px;
-        padding: 12px 14px;
-      }
-      .demoRow strong{ color: #0c3327; font-size: 14px; }
-      .money{
-        font-variant-numeric: tabular-nums;
-        font-family: var(--mono);
-        color: #0c3327;
-        white-space: nowrap;
-      }
-      .demoNote{
-        margin-top: 10px;
-        color: var(--muted);
-        font-size: 12.5px;
-      }
 
       /* Pricing */
       .pricingGrid{
@@ -561,6 +546,8 @@
         flex-wrap: wrap;
         justify-content:flex-start;
       }
+      .statusSuccess{ color: #0b7a4d; }
+      .statusError{ color: #9e2a2a; }
 
       .formStatus{
         font-size: 13px;
@@ -730,6 +717,18 @@
             <p>Calculations stay in the browser. No payment collection, logins, or end-user data storage.</p>
           </div>
           <div class="card">
+          </div>
+          <div class="card">
+            <div class="icon">CFG</div>
+            <h3>Configurable schedules</h3>
+            <p>Built around Florida customary policies and adaptable to your firm’s fee schedules, disclaimers, and branding.</p>
+          </div>
+          <div class="card">
+            <div class="icon">PRV</div>
+            <h3>Client-side privacy</h3>
+            <p>Calculations stay in the browser. No payment collection, logins, or end-user data storage.</p>
+          </div>
+          <div class="card">
             <div class="icon">SUP</div>
             <h3>Managed for you</h3>
             <p>Licenses, domains, and config changes are supported by LexSheet so your team doesn’t chase updates.</p>
@@ -747,6 +746,12 @@
         </p>
 
         <div class="howGrid">
+          <div class="card">
+            <h3>Visitor flow</h3>
+            <ul class="list">
+              <li><span class="dotSm"></span>Client enters basic transaction details and optional lender info.</li>
+              <li><span class="dotSm"></span>The calculator returns estimated totals with a printable breakdown.</li>
+              <li><span class="dotSm"></span>Your contact information and disclaimers stay front and center.</li>
           <div class="card">
             <h3>Visitor flow</h3>
             <ul class="list">
@@ -777,6 +782,12 @@
 
         <div class="demoGrid">
           <div class="card">
+            <h3>Admin controls</h3>
+            <ul class="list">
+              <li><span class="dotSm"></span>License-level branding, phone, and schedule updates.</li>
+              <li><span class="dotSm"></span>Domain allowlists for each installation.</li>
+              <li><span class="dotSm"></span>Support for additional licenses as your footprint grows.</li>
+            </ul>
             <h3 style="margin-bottom:12px;">Demo inputs</h3>
             <form id="demoForm" aria-label="Demo closing cost calculator">
               <div class="formGrid">
@@ -820,6 +831,24 @@
             </div>
             <p class="demoNote">Numbers are illustrative and do not constitute legal or financial advice.</p>
           </div>
+        </div>
+      </section>
+
+      <!-- DEMO -->
+      <section id="demo">
+        <div class="sectionTitle">Demo</div>
+        <div class="sectionH2">Explore the calculator experience.</div>
+        <p class="sectionP">
+          This sample calculator illustrates the type of breakdown clients see on your site. Values are for demonstration only and can be adjusted to
+          match your firm’s schedules.
+        </p>
+
+        <div class="demoFrame">
+          <iframe
+            src="https://calc.lexsheet.app/?k=KLF-8TJS-7BP6-62JG"
+            loading="lazy"
+            title="Closing Cost Calculator"
+          ></iframe>
         </div>
       </section>
 
