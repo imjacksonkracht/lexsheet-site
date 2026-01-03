@@ -1,124 +1,830 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LexSheet – Closing Cost Estimate Software</title>
-  <meta name="description" content="LexSheet is hosted software that provides estimated real estate closing cost calculations for Florida law firms." />
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f7f7;
-      color: #222;
-      line-height: 1.6;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 48px 24px;
-      background: #ffffff;
-    }
-    h1, h2 {
-      color: #111;
-    }
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
-    }
-    h2 {
-      font-size: 1.4rem;
-      margin-top: 2.5rem;
-    }
-    p {
-      margin: 0.75rem 0;
-    }
-    .tagline {
-      font-size: 1.1rem;
-      color: #555;
-    }
-    .footer {
-      margin-top: 4rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid #e5e5e5;
-      font-size: 0.9rem;
-      color: #555;
-    }
-    a {
-      color: #1a5fd0;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>LexSheet</h1>
-    <p class="tagline">Closing Cost Estimate Software for Florida Law Firms</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LexSheet — Closing Cost Estimate Software for Florida Law Firms</title>
+    <meta
+      name="description"
+      content="LexSheet is hosted software that provides a configurable closing cost estimation calculator for Florida real estate transactions. Embed it with a secure license key."
+    />
 
-    <h2>What LexSheet Is</h2>
-    <p>
-      LexSheet is hosted software that provides a configurable closing cost estimation calculator
-      for Florida real estate transactions. Law firms embed the calculator on their website so
-      clients can generate estimated buyer and seller closing costs based on basic transaction details.
-    </p>
+    <!-- Open Graph -->
+    <meta property="og:title" content="LexSheet — Closing Cost Estimate Software for Florida Law Firms" />
+    <meta property="og:description" content="Embed a configurable Florida closing cost estimate calculator on your firm’s website with a secure license key." />
+    <meta property="og:type" content="website" />
+    <!-- Optional after you add a logo image -->
+    <!-- <meta property="og:image" content="/assets/og.png" /> -->
 
-    <p>
-      LexSheet is software only. All calculations are estimates provided for informational purposes
-      and do not constitute legal or financial advice.
-    </p>
+    <style>
+      :root{
+        --bg: #0b1220;
+        --bg2:#0d172a;
+        --card: rgba(255,255,255,.06);
+        --card2: rgba(255,255,255,.09);
+        --border: rgba(255,255,255,.10);
+        --border2: rgba(255,255,255,.16);
+        --text: #e7eefc;
+        --muted: rgba(231,238,252,.72);
 
-    <h2>How It Works</h2>
-    <p>
-      Firms embed the LexSheet calculator on their website using a secure license key.
-      Users enter limited transaction details, and the calculator displays an estimated breakdown
-      of customary closing costs.
-    </p>
-    <p>
-      Calculations are performed client-side. LexSheet does not process payments and does not store
-      end-user data.
-    </p>
+        --brand: #36c27a;
+        --brand2:#2ea56a;
 
-    <h2>Pricing</h2>
-    <p>
-      LexSheet is offered on a licensed basis with a one-time setup fee and an ongoing subscription
-      for hosted access, maintenance, and support.
-    </p>
-    <p>
-      Pricing varies by license count and billing term. Please contact us for details.
-    </p>
+        --shadow: 0 18px 55px rgba(0,0,0,.35);
+        --radius: 18px;
 
-    <h2>Contact</h2>
-    <p>
-      Email: <a href="mailto:support@lexsheet.com">support@lexsheet.com</a>
-    </p>
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      }
 
-    <div class="footer">
-      <h2>Terms of Service</h2>
-      <p>
-        LexSheet provides estimated closing cost calculations for informational purposes only.
-        LexSheet does not provide legal or financial advice and does not guarantee the accuracy of
-        estimates. Use of the software does not create an attorney-client relationship.
-      </p>
+      *{ box-sizing:border-box; }
+      html, body{ height:100%; }
+      body{
+        margin:0;
+        font-family: var(--sans);
+        color: var(--text);
+        background:
+          radial-gradient(1200px 520px at 20% 0%, rgba(54,194,122,.22), transparent 60%),
+          radial-gradient(900px 500px at 100% 12%, rgba(59,130,246,.18), transparent 55%),
+          radial-gradient(900px 500px at 30% 100%, rgba(54,194,122,.12), transparent 60%),
+          linear-gradient(180deg, var(--bg), var(--bg2));
+      }
 
-      <h2>Privacy Policy</h2>
-      <p>
-        LexSheet does not collect or store personal information entered into the calculator.
-        Calculations are performed client-side. Limited operational data may be collected solely
-        for service reliability and security.
-      </p>
+      a{ color: inherit; text-decoration: none; }
+      a:hover{ text-decoration: underline; }
 
-      <p>
-        © <span id="year"></span> LexSheet Technologies, LLC
-      </p>
+      /* Layout */
+      .container{
+        width: min(1120px, calc(100% - 36px));
+        margin: 0 auto;
+      }
+
+      /* Top nav */
+      .nav{
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(12px);
+        background: rgba(11,18,32,.65);
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+      .navInner{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+        padding: 14px 0;
+      }
+      .brand{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        min-width: 220px;
+      }
+      .logoMark{
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.10);
+        display:grid;
+        place-items:center;
+        overflow:hidden;
+      }
+      .logoMark img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display:block;
+      }
+      .brandText{
+        display:flex;
+        flex-direction:column;
+        line-height: 1.05;
+      }
+      .brandName{
+        font-weight: 900;
+        letter-spacing: .2px;
+      }
+      .brandTag{
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .navLinks{
+        display:flex;
+        align-items:center;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content:flex-end;
+      }
+      .navLinks a{
+        font-size: 13px;
+        color: rgba(231,238,252,.82);
+        padding: 8px 10px;
+        border-radius: 10px;
+      }
+      .navLinks a:hover{
+        text-decoration:none;
+        background: rgba(255,255,255,.06);
+      }
+
+      .btn{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        border-radius: 12px;
+        padding: 11px 14px;
+        font-weight: 800;
+        font-size: 13px;
+        border: 1px solid rgba(255,255,255,.12);
+        cursor:pointer;
+        white-space: nowrap;
+      }
+      .btnPrimary{
+        background: linear-gradient(180deg, rgba(54,194,122,1), rgba(46,165,106,1));
+        border-color: rgba(54,194,122,.35);
+        color: #06130c;
+        box-shadow: 0 10px 24px rgba(54,194,122,.14);
+      }
+      .btnPrimary:hover{ filter: brightness(1.03); text-decoration:none; }
+      .btnGhost{
+        background: rgba(255,255,255,.05);
+        color: var(--text);
+      }
+      .btnGhost:hover{ background: rgba(255,255,255,.08); text-decoration:none; }
+
+      /* Hero */
+      .hero{
+        padding: 54px 0 18px;
+      }
+      .heroGrid{
+        display:grid;
+        grid-template-columns: 1.12fr .88fr;
+        gap: 28px;
+        align-items: start;
+      }
+      .kicker{
+        display:inline-flex;
+        gap:10px;
+        align-items:center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.05);
+        color: rgba(231,238,252,.88);
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .dot{
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--brand);
+        box-shadow: 0 0 0 6px rgba(54,194,122,.12);
+      }
+      h1{
+        margin: 14px 0 10px;
+        font-size: clamp(34px, 4.2vw, 52px);
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+      }
+      .subhead{
+        color: rgba(231,238,252,.78);
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0 0 18px;
+        max-width: 58ch;
+      }
+      .heroCtas{
+        display:flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .finePrint{
+        margin-top: 14px;
+        color: rgba(231,238,252,.60);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      /* Right hero card */
+      .heroCard{
+        border-radius: var(--radius);
+        border: 1px solid rgba(255,255,255,.12);
+        background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+        box-shadow: var(--shadow);
+        overflow:hidden;
+      }
+      .heroCardHeader{
+        padding: 16px 16px 12px;
+        border-bottom: 1px solid rgba(255,255,255,.10);
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+      }
+      .heroCardHeader strong{ font-size: 13px; letter-spacing: .2px; }
+      .pill{
+        font-size: 12px;
+        color: rgba(231,238,252,.86);
+        border: 1px solid rgba(255,255,255,.14);
+        background: rgba(255,255,255,.06);
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .heroCardBody{
+        padding: 16px;
+      }
+      .miniSteps{
+        display:grid;
+        gap: 10px;
+      }
+      .step{
+        display:flex;
+        gap: 10px;
+        align-items:flex-start;
+        padding: 12px;
+        border: 1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.04);
+        border-radius: 14px;
+      }
+      .stepNum{
+        width: 28px;
+        height: 28px;
+        border-radius: 10px;
+        display:grid;
+        place-items:center;
+        font-weight: 900;
+        color: #06130c;
+        background: rgba(54,194,122,.95);
+        flex: 0 0 auto;
+      }
+      .stepTitle{
+        font-weight: 900;
+        font-size: 13px;
+        margin: 0 0 3px;
+      }
+      .stepDesc{
+        margin:0;
+        font-size: 12.5px;
+        color: rgba(231,238,252,.74);
+        line-height: 1.4;
+      }
+
+      /* Section shells */
+      section{
+        padding: 38px 0;
+      }
+      .sectionTitle{
+        font-size: 12px;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: rgba(231,238,252,.65);
+        margin: 0 0 10px;
+        font-weight: 900;
+      }
+      .sectionH2{
+        margin: 0 0 10px;
+        font-size: 28px;
+        letter-spacing: -0.01em;
+      }
+      .sectionP{
+        margin: 0;
+        max-width: 74ch;
+        color: rgba(231,238,252,.74);
+        line-height: 1.55;
+      }
+
+      /* Feature grid */
+      .features{
+        margin-top: 18px;
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .card{
+        border-radius: var(--radius);
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.05);
+        padding: 16px;
+      }
+      .card h3{
+        margin: 0 0 8px;
+        font-size: 14px;
+        font-weight: 950;
+        letter-spacing: .2px;
+      }
+      .card p{
+        margin: 0;
+        color: rgba(231,238,252,.74);
+        line-height: 1.5;
+        font-size: 13px;
+      }
+      .icon{
+        width: 36px;
+        height: 36px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.06);
+        display:grid;
+        place-items:center;
+        margin-bottom: 10px;
+        color: rgba(231,238,252,.90);
+        font-family: var(--mono);
+        font-weight: 900;
+        font-size: 13px;
+      }
+
+      /* Pricing */
+      .pricingGrid{
+        margin-top: 18px;
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        align-items: stretch;
+      }
+      .priceCard{
+        border-radius: var(--radius);
+        border: 1px solid rgba(255,255,255,.12);
+        background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+        padding: 18px;
+        position: relative;
+        overflow:hidden;
+      }
+      .priceCard.featured{
+        border-color: rgba(54,194,122,.35);
+        box-shadow: 0 22px 70px rgba(0,0,0,.35);
+      }
+      .badge{
+        position:absolute;
+        top: 14px;
+        right: 14px;
+        border-radius: 999px;
+        padding: 7px 10px;
+        font-size: 12px;
+        font-weight: 900;
+        background: rgba(54,194,122,.18);
+        border: 1px solid rgba(54,194,122,.35);
+        color: rgba(231,238,252,.95);
+      }
+      .priceTop{
+        display:flex;
+        flex-direction:column;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+      .planName{
+        font-weight: 950;
+        font-size: 14px;
+        letter-spacing: .2px;
+      }
+      .planDesc{
+        margin:0;
+        color: rgba(231,238,252,.72);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .planPrice{
+        margin-top: 10px;
+        font-size: 34px;
+        font-weight: 950;
+        letter-spacing: -0.02em;
+      }
+      .planPrice span{
+        font-size: 13px;
+        color: rgba(231,238,252,.70);
+        font-weight: 800;
+        margin-left: 6px;
+      }
+
+      .priceList{
+        margin: 14px 0 0;
+        padding: 0;
+        list-style: none;
+        display:grid;
+        gap: 10px;
+      }
+      .priceList li{
+        display:flex;
+        align-items:flex-start;
+        gap: 10px;
+        color: rgba(231,238,252,.78);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+      .check{
+        width: 20px;
+        height: 20px;
+        border-radius: 8px;
+        display:grid;
+        place-items:center;
+        background: rgba(54,194,122,.16);
+        border: 1px solid rgba(54,194,122,.26);
+        color: rgba(231,238,252,.92);
+        font-weight: 950;
+        flex: 0 0 auto;
+      }
+
+      .pricingNote{
+        margin-top: 14px;
+        color: rgba(231,238,252,.65);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      /* Pricing table (exact schedule) */
+      .tableWrap{
+        margin-top: 16px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255,255,255,.12);
+        overflow:hidden;
+        background: rgba(255,255,255,.04);
+      }
+      table{
+        width:100%;
+        border-collapse: collapse;
+      }
+      th, td{
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        text-align:left;
+        font-size: 13px;
+      }
+      th{
+        background: rgba(255,255,255,.05);
+        color: rgba(231,238,252,.88);
+        font-weight: 950;
+        letter-spacing: .2px;
+        white-space: nowrap;
+      }
+      td{
+        color: rgba(231,238,252,.78);
+      }
+      tr:last-child td{ border-bottom:none; }
+      .money{
+        font-variant-numeric: tabular-nums;
+        font-family: var(--mono);
+        color: rgba(231,238,252,.92);
+        white-space: nowrap;
+      }
+
+      /* Contact CTA */
+      .cta{
+        border-radius: calc(var(--radius) + 4px);
+        border: 1px solid rgba(255,255,255,.12);
+        background:
+          radial-gradient(900px 380px at 20% 0%, rgba(54,194,122,.22), transparent 58%),
+          rgba(255,255,255,.05);
+        padding: 18px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap: 14px;
+        box-shadow: var(--shadow);
+      }
+      .cta h3{
+        margin:0 0 6px;
+        font-size: 16px;
+        font-weight: 950;
+        letter-spacing: .2px;
+      }
+      .cta p{
+        margin:0;
+        color: rgba(231,238,252,.74);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .ctaActions{
+        display:flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content:flex-end;
+      }
+
+      /* Footer */
+      footer{
+        padding: 24px 0 34px;
+        color: rgba(231,238,252,.62);
+        font-size: 12px;
+        border-top: 1px solid rgba(255,255,255,.08);
+        background: rgba(0,0,0,.10);
+      }
+      .footerGrid{
+        display:grid;
+        grid-template-columns: 1.3fr .7fr;
+        gap: 18px;
+        align-items:start;
+      }
+      .footerLinks{
+        display:flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content:flex-end;
+      }
+      .legalCard{
+        margin-top: 12px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.04);
+        padding: 14px;
+        color: rgba(231,238,252,.68);
+        line-height: 1.55;
+      }
+
+      /* Responsive */
+      @media (max-width: 980px){
+        .heroGrid{ grid-template-columns: 1fr; }
+        .features{ grid-template-columns: 1fr; }
+        .pricingGrid{ grid-template-columns: 1fr; }
+        .footerGrid{ grid-template-columns: 1fr; }
+        .footerLinks{ justify-content:flex-start; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <div class="container">
+        <div class="navInner">
+          <div class="brand">
+            <div class="logoMark" aria-label="LexSheet logo">
+              <!-- If you add /assets/logo.svg this will display automatically -->
+              <img src="/assets/logo.svg" alt="LexSheet" onerror="this.style.display='none'; this.parentElement.textContent='LS';" />
+            </div>
+            <div class="brandText">
+              <div class="brandName">LexSheet</div>
+              <div class="brandTag">Closing Cost Estimate Software for Florida Law Firms</div>
+            </div>
+          </div>
+
+          <div class="navLinks">
+            <a href="#what">What It Is</a>
+            <a href="#how">How It Works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+            <a class="btn btnPrimary" href="mailto:support@lexsheet.com?subject=LexSheet%20Inquiry">Request Access</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
+    <main class="container">
+      <!-- HERO -->
+      <div class="hero">
+        <div class="heroGrid">
+          <div>
+            <div class="kicker"><span class="dot"></span> Hosted. Configurable. Embed-ready.</div>
+            <h1>Closing cost estimates your firm can publish with confidence.</h1>
+            <p class="subhead">
+              LexSheet is hosted software that provides a configurable closing cost estimation calculator for Florida real estate transactions.
+              Firms embed the calculator on their website so clients can generate estimated buyer and seller closing costs based on basic transaction details.
+            </p>
+
+            <div class="heroCtas">
+              <a class="btn btnPrimary" href="#pricing">View Pricing</a>
+              <a class="btn btnGhost" href="mailto:support@lexsheet.com?subject=LexSheet%20Demo%20Request">Request a Demo</a>
+            </div>
+
+            <div class="finePrint">
+              LexSheet is software only. All calculations are estimates provided for informational purposes and do not constitute legal or financial advice.
+              Use of the software does not create an attorney-client relationship.
+            </div>
+          </div>
+
+          <div class="heroCard">
+            <div class="heroCardHeader">
+              <strong>How firms deploy LexSheet</strong>
+              <span class="pill">Secure license key</span>
+            </div>
+            <div class="heroCardBody">
+              <div class="miniSteps">
+                <div class="step">
+                  <div class="stepNum">1</div>
+                  <div>
+                    <div class="stepTitle">Provision licenses</div>
+                    <p class="stepDesc">Each firm receives a unique license key with configurable settings and allowed domains.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="stepNum">2</div>
+                  <div>
+                    <div class="stepTitle">Embed on your website</div>
+                    <p class="stepDesc">Drop in a simple iframe. No app installs, no plugins, and no client login required.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="stepNum">3</div>
+                  <div>
+                    <div class="stepTitle">Client-side estimates</div>
+                    <p class="stepDesc">Users enter limited transaction details; the calculator renders an estimated breakdown.</p>
+                  </div>
+                </div>
+              </div>
+              <p class="pricingNote" style="margin-top:14px;">
+                Calculations are performed client-side. LexSheet does not process payments and does not store end-user data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHAT -->
+      <section id="what">
+        <div class="sectionTitle">What LexSheet Is</div>
+        <div class="sectionH2">A hosted, configurable closing cost calculator for Florida firms.</div>
+        <p class="sectionP">
+          LexSheet is hosted software that provides a configurable closing cost estimation calculator for Florida real estate transactions.
+          Law firms embed the calculator on their website so clients can generate estimated buyer and seller closing costs based on basic transaction details.
+        </p>
+
+        <div class="features">
+          <div class="card">
+            <div class="icon">IF</div>
+            <h3>Embed anywhere</h3>
+            <p>Works in an iframe on GoDaddy, WordPress, Squarespace, and custom sites—without giving third parties access to your code.</p>
+          </div>
+          <div class="card">
+            <div class="icon">LK</div>
+            <h3>License-key controlled</h3>
+            <p>Firms use a secure license key. Configurations are applied per license, and domains can be restricted per firm.</p>
+          </div>
+          <div class="card">
+            <div class="icon">CS</div>
+            <h3>Client-side calculations</h3>
+            <p>Estimates are computed in the user’s browser. LexSheet does not store end-user transaction inputs.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW -->
+      <section id="how">
+        <div class="sectionTitle">How It Works</div>
+        <div class="sectionH2">Simple for clients, clean for firms.</div>
+        <p class="sectionP">
+          Firms embed the LexSheet calculator on their website using a secure license key. Users enter limited transaction details,
+          and the calculator displays an estimated breakdown of customary closing costs.
+        </p>
+
+        <div class="features" style="margin-top:16px;">
+          <div class="card">
+            <div class="icon">CN</div>
+            <h3>Configurable per firm</h3>
+            <p>Firm name, phone, disclaimers, and fee schedules can be customized per license—without editing calculator logic.</p>
+          </div>
+          <div class="card">
+            <div class="icon">OP</div>
+            <h3>Operational visibility</h3>
+            <p>Licenses can be issued, activated, revoked, and updated from an admin portal. Embed code is generated per license.</p>
+          </div>
+          <div class="card">
+            <div class="icon">SX</div>
+            <h3>Software-only</h3>
+            <p>LexSheet is not a substitute for firm-specific quotes. It provides estimates for informational purposes only.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section id="pricing">
+        <div class="sectionTitle">Pricing</div>
+        <div class="sectionH2">Clear license-based pricing.</div>
+        <p class="sectionP">
+          LexSheet is offered on a licensed basis with a one-time setup fee and an ongoing subscription for hosted access, maintenance, and support.
+          Pricing varies by license count and billing term.
+        </p>
+
+        <!-- Primary pricing cards -->
+        <div class="pricingGrid">
+          <div class="priceCard">
+            <div class="priceTop">
+              <div class="planName">Setup</div>
+              <p class="planDesc">One-time onboarding and provisioning.</p>
+              <div class="planPrice">$199 <span>one-time</span></div>
+            </div>
+            <ul class="priceList">
+              <li><span class="check">✓</span>Initial license provisioned</li>
+              <li><span class="check">✓</span>Domain restriction configured</li>
+              <li><span class="check">✓</span>Embed code provided</li>
+              <li><span class="check">✓</span>Default configuration loaded</li>
+            </ul>
+            <p class="pricingNote">Additional licenses can be provisioned at setup.</p>
+          </div>
+
+          <div class="priceCard featured">
+            <div class="badge">Most common</div>
+            <div class="priceTop">
+              <div class="planName">Monthly</div>
+              <p class="planDesc">Hosted access, maintenance, and support.</p>
+              <div class="planPrice">$99 <span>/ month</span></div>
+            </div>
+            <ul class="priceList">
+              <li><span class="check">✓</span>One active license included</li>
+              <li><span class="check">✓</span>Config changes per firm</li>
+              <li><span class="check">✓</span>License management support</li>
+              <li><span class="check">✓</span>Security and reliability updates</li>
+            </ul>
+            <p class="pricingNote">Additional monthly licenses: $75 each.</p>
+          </div>
+
+          <div class="priceCard">
+            <div class="priceTop">
+              <div class="planName">Annual</div>
+              <p class="planDesc">Best value for multi-license firms.</p>
+              <div class="planPrice">$990 <span>/ year</span></div>
+            </div>
+            <ul class="priceList">
+              <li><span class="check">✓</span>One active license included</li>
+              <li><span class="check">✓</span>Priority configuration support</li>
+              <li><span class="check">✓</span>Predictable annual billing</li>
+              <li><span class="check">✓</span>Hosted access and maintenance</li>
+            </ul>
+            <p class="pricingNote">Additional annual licenses: $750 each.</p>
+          </div>
+        </div>
+
+        <!-- Exact schedule table -->
+        <div class="tableWrap" aria-label="LexSheet pricing schedule">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>One license</th>
+                <th>Additional licenses</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Set-up (one time)</td>
+                <td class="money">$199</td>
+                <td class="money">$149 ea</td>
+              </tr>
+              <tr>
+                <td>Monthly</td>
+                <td class="money">$99</td>
+                <td class="money">$75 ea</td>
+              </tr>
+              <tr>
+                <td>Annually</td>
+                <td class="money">$990</td>
+                <td class="money">$750 ea</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="pricingNote">
+          Note: LexSheet provides estimated closing cost calculations for informational purposes only and does not guarantee the accuracy of estimates.
+          Settlement fees vary by transaction and provider. Use of the software does not create an attorney-client relationship.
+        </p>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="cta">
+          <div>
+            <h3>Request licensing or a firm demo</h3>
+            <p>Email support and include your firm name, website domain(s), and desired license count.</p>
+          </div>
+          <div class="ctaActions">
+            <a class="btn btnPrimary" href="mailto:support@lexsheet.com?subject=LexSheet%20Licensing%20Request">Email Support</a>
+            <a class="btn btnGhost" href="#pricing">Review Pricing</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footerGrid">
+          <div>
+            <div style="font-weight:900; letter-spacing:.2px;">LexSheet</div>
+            <div style="margin-top:6px;">Email: <a href="mailto:support@lexsheet.com">support@lexsheet.com</a></div>
+
+            <div class="legalCard">
+              <div style="font-weight:900; margin-bottom:6px;">Terms of Service</div>
+              LexSheet provides estimated closing cost calculations for informational purposes only. LexSheet does not provide legal or financial advice and does not guarantee the accuracy of estimates. Use of the software does not create an attorney-client relationship.
+              <div style="height:10px;"></div>
+              <div style="font-weight:900; margin-bottom:6px;">Privacy Policy</div>
+              LexSheet does not collect or store personal information entered into the calculator. Calculations are performed client-side. Limited operational data may be collected solely for service reliability and security.
+            </div>
+
+            <div style="margin-top:12px;">© 2026 LexSheet Technologies, LLC</div>
+          </div>
+
+          <div class="footerLinks">
+            <a href="#what">What It Is</a>
+            <a href="#how">How It Works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
